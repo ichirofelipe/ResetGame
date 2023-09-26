@@ -1,4 +1,3 @@
 extends Node
 
-var last_segment = null
-var width_segment = null
+var last_camera: Camera2D
