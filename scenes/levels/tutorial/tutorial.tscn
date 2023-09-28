@@ -376,9 +376,10 @@ shape = SubResource("RectangleShape2D_5fo70")
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="HUD"]
-offset_top = 645.0
-offset_right = 1273.0
-offset_bottom = 720.0
+self_modulate = Color(1, 1, 1, 0)
+offset_top = 1.0
+offset_right = 1280.0
+offset_bottom = 76.0
 
 [node name="Dash" parent="HUD/Panel" node_paths=PackedStringArray("player") instance=ExtResource("14_airit")]
 layout_mode = 0
