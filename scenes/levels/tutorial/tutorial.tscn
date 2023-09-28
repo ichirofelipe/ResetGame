@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://dgirmo2hhbx2q"]
+[gd_scene load_steps=36 format=3 uid="uid://dgirmo2hhbx2q"]
 
 [ext_resource type="Script" path="res://scripts/levels/base.gd" id="1_iq1jd"]
 [ext_resource type="Texture2D" uid="uid://cy3c8qo7tepfd" path="res://assets/sprites/tileset/forest/cube_01.png" id="1_nl3un"]
+[ext_resource type="Texture2D" uid="uid://dxy13hpvj53g3" path="res://assets/sprites/tileset/Mossy - Decorations&Hazards.png" id="2_45ahj"]
 [ext_resource type="Texture2D" uid="uid://dc0ryxgry51fw" path="res://assets/sprites/tileset/forest/cube_02.png" id="2_irymj"]
 [ext_resource type="Texture2D" uid="uid://oh2a14cvkx41" path="res://assets/sprites/tileset/forest/cube_corner.png" id="3_iv78m"]
 [ext_resource type="Texture2D" uid="uid://bfmgi03g5iydq" path="res://assets/sprites/tileset/forest/cube_side_01.png" id="4_a4k2y"]
@@ -15,6 +16,27 @@
 [ext_resource type="PackedScene" uid="uid://fbelmyiq1ifk" path="res://scenes/blocks/checkpoint.tscn" id="11_58ain"]
 [ext_resource type="Script" path="res://scripts/blocks/segment.gd" id="12_tb1oi"]
 [ext_resource type="PackedScene" uid="uid://ml522118npfn" path="res://scenes/hud/skill.tscn" id="14_airit"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tyubt"]
+texture = ExtResource("2_45ahj")
+texture_region_size = Vector2i(64, 64)
+49:30/size_in_atlas = Vector2i(12, 6)
+49:30/0 = 0
+25:29/size_in_atlas = Vector2i(9, 8)
+25:29/next_alternative_id = 2
+25:29/0 = 0
+25:29/1 = 1
+25:29/1/transpose = true
+36:29/size_in_atlas = Vector2i(11, 7)
+36:29/next_alternative_id = 2
+36:29/0 = 0
+36:29/1 = 1
+36:29/1/flip_h = true
+36:29/1/flip_v = true
+
+[sub_resource type="TileSet" id="TileSet_j1y6w"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_tyubt")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ffyw5"]
 texture = ExtResource("1_nl3un")
@@ -172,9 +194,22 @@ size = Vector2(6119.1, 3959.09)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mfowi"]
 size = Vector2(8580.94, 3959.09)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rixgx"]
+size = Vector2(1650, 228.182)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fo70"]
+size = Vector2(210, 519.09)
+
 [node name="tutorial" type="Node2D"]
 scale = Vector2(0.275, 0.275)
 script = ExtResource("1_iq1jd")
+
+[node name="DecorationTiles" type="TileMap" parent="."]
+position = Vector2(1.38716e-05, 0)
+scale = Vector2(0.4, 0.4)
+tile_set = SubResource("TileSet_j1y6w")
+format = 2
+layer_0/tile_data = PackedInt32Array(3736493, 2359296, 65565, 3867565, 1638400, 29, 3933100, 1638400, 65565, 3539886, 3211264, 30, 3539902, 2359296, 29, 3539898, 3211264, 30, 3670964, 3211264, 30, 3605426, 3211264, 30)
 
 [node name="PlatformTiles" type="TileMap" parent="."]
 position = Vector2(203.636, 1814.55)
@@ -319,6 +354,26 @@ position = Vector2(18821.8, 2530.91)
 [node name="Checkpoint4_2" parent="Checkpoints" instance=ExtResource("11_58ain")]
 position = Vector2(26967.3, 1716.36)
 
+[node name="Thorns" type="Node2D" parent="."]
+position = Vector2(1.38716e-05, 0)
+scale = Vector2(0.4, 0.4)
+
+[node name="Thorn1" type="Area2D" parent="Thorns"]
+position = Vector2(59981.6, 3336.34)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Thorns/Thorn1"]
+position = Vector2(813.281, 104.091)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_rixgx")
+
+[node name="Thorn2" type="Area2D" parent="Thorns"]
+position = Vector2(59981.6, 3563.64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Thorns/Thorn2"]
+position = Vector2(91, 249.545)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_5fo70")
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="HUD"]
@@ -344,3 +399,4 @@ skillName = "dash"
 [connection signal="body_exited" from="Segments/Segment3" to="Segments/Segment3" method="_on_body_exited"]
 [connection signal="body_entered" from="Segments/Segment4" to="Segments/Segment4" method="_on_body_entered"]
 [connection signal="body_exited" from="Segments/Segment4" to="Segments/Segment4" method="_on_body_exited"]
+[connection signal="body_entered" from="Thorns/Thorn1" to="Player" method="onTakeDamage"]

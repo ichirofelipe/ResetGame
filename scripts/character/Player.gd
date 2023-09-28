@@ -51,3 +51,9 @@ func _on_fall_zone_body_entered(body):
 	if Checkpoint.last_position:
 		self.global_position = Checkpoint.last_position
 	
+
+
+func onTakeDamage(body):
+	mainTimer._decreaseTimer();
+	if Checkpoint.last_position:
+		self.global_position = Checkpoint.last_position
