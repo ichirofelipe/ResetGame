@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dgirmo2hhbx2q"]
+[gd_scene load_steps=37 format=3 uid="uid://dgirmo2hhbx2q"]
 
 [ext_resource type="Script" path="res://scripts/levels/base.gd" id="1_iq1jd"]
 [ext_resource type="Texture2D" uid="uid://cy3c8qo7tepfd" path="res://assets/sprites/tileset/forest/cube_01.png" id="1_nl3un"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://fbelmyiq1ifk" path="res://scenes/blocks/checkpoint.tscn" id="11_58ain"]
 [ext_resource type="Script" path="res://scripts/blocks/segment.gd" id="12_tb1oi"]
 [ext_resource type="PackedScene" uid="uid://ml522118npfn" path="res://scenes/hud/skill.tscn" id="14_airit"]
+[ext_resource type="Texture2D" uid="uid://dkd6hqde0qeo1" path="res://assets/images/background/Domain_BG_blur.png" id="17_00x2c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tyubt"]
 texture = ExtResource("2_45ahj")
@@ -363,7 +364,6 @@ position = Vector2(59981.6, 3336.34)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Thorns/Thorn1"]
 position = Vector2(813.281, 104.091)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_rixgx")
 
 [node name="Thorn2" type="Area2D" parent="Thorns"]
@@ -371,7 +371,6 @@ position = Vector2(59981.6, 3563.64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Thorns/Thorn2"]
 position = Vector2(91, 249.545)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_5fo70")
 
 [node name="HUD" type="CanvasLayer" parent="."]
@@ -389,6 +388,17 @@ offset_bottom = 75.0
 player = NodePath("../../../Player")
 skillName = "dash"
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1784, 536)
+motion_scale = Vector2(0.3, 0.3)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("17_00x2c")
+
 [connection signal="body_entered" from="FallZone" to="Player" method="_on_fall_zone_body_entered"]
 [connection signal="UseSkill" from="Player" to="HUD/Panel/Dash" method="_on_player_use_skill"]
 [connection signal="body_entered" from="Segments/Segment1" to="Segments/Segment1" method="_on_body_entered"]
@@ -400,3 +410,4 @@ skillName = "dash"
 [connection signal="body_entered" from="Segments/Segment4" to="Segments/Segment4" method="_on_body_entered"]
 [connection signal="body_exited" from="Segments/Segment4" to="Segments/Segment4" method="_on_body_exited"]
 [connection signal="body_entered" from="Thorns/Thorn1" to="Player" method="onTakeDamage"]
+[connection signal="body_entered" from="Thorns/Thorn2" to="Player" method="onTakeDamage"]
