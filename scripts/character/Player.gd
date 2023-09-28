@@ -3,14 +3,22 @@ extends CharacterBody2D
 @export var move_speed: int = 250.0
 @export var run_speed: int = 400.0
 @export var jump_force: int = -1000
+@export var dash_cooldown: int = 5
 
 const GRAVITY = 65
 
-var dashProc: Dictionary = { "right": 0, "left": 0 }
+var direction: int = 1
 var dashSpeed: float = 1500.0
-var dashThreshold: float = 1.7
+var dashTimer: float = 0;
 var doubleJump: bool = true
 var doubleJumped: bool = false
+
+func _physics_process(delta):
+	if dashTimer > delta:
+		dashTimer -= delta
+	else:
+		dashTimer = 0
+
 
 func fall():
 	velocity.y += GRAVITY
@@ -24,8 +32,6 @@ func getLerp(speed, weight):
 
 func jump():
 	velocity.y = jump_force
-	for key in dashProc:
-		dashProc[key] = 0
 
 
 func _on_fall_zone_body_entered(body):

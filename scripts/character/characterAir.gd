@@ -8,15 +8,11 @@ var velX: float
 var Mspeed: float
 var Rspeed: float
 
-func Enter():
-	if player.doubleJump:
-		player.doubleJumped = false
-
 	
 func Physics_Update(_delta: float):
 	stateValidation(_delta)
 	updateVariables()
-	air()
+	playerMotion()
 	player.fall()
 	
 
@@ -32,16 +28,26 @@ func updateVariables():
 	Rspeed = player.run_speed
 
 
-func air():
+func playerMotion():
 	animation.play("air")
 	
 	if Input.is_action_pressed("right"):
 		player.velocity.x = player.getLerp(Mspeed, 0.9) if velX < Mspeed else player.getLerp(Rspeed, 0.7)
-		animation.flip_h = false
+		isInAir(1)
 	elif Input.is_action_pressed("left"):
 		player.velocity.x = player.getLerp(-Mspeed, 0.9) if velX > -Mspeed else player.getLerp(-Rspeed, 0.7)
-		animation.flip_h = true
+		isInAir(-1)
 	
 	if Input.is_action_just_pressed("jump") and player.doubleJump and !player.doubleJumped:
 		player.jump()
 		player.doubleJumped = true
+
+
+func isInAir(direction: int):
+	animation.flip_h = true if direction == -1 else false
+	isDashing(direction)
+	
+	
+func isDashing(direction: int):
+	if Input.is_action_just_pressed("dash") and player.dashTimer == 0:
+		Transitioned.emit(self, "dash")

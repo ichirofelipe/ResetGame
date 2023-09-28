@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c2bekxcgd0muq"]
+[gd_scene load_steps=24 format=3 uid="uid://c2bekxcgd0muq"]
 
 [ext_resource type="Script" path="res://scripts/levels/forest/forest_1.gd" id="1_iwtr8"]
 [ext_resource type="Texture2D" uid="uid://cy3c8qo7tepfd" path="res://assets/sprites/tileset/forest/cube_01.png" id="1_qkvd8"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b4dk5np65g1j5" path="res://scenes/Player.tscn" id="8_4bf17"]
 [ext_resource type="PackedScene" uid="uid://fbelmyiq1ifk" path="res://scenes/blocks/checkpoint.tscn" id="10_q4liv"]
 [ext_resource type="Script" path="res://scripts/blocks/segment.gd" id="11_xttq3"]
+[ext_resource type="Texture2D" uid="uid://d07svryib438h" path="res://assets/sprites/character/Dash2/DashBlue_00009.png" id="12_aqqgq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ffyw5"]
 texture = ExtResource("1_qkvd8")
@@ -130,10 +131,10 @@ sources/6 = SubResource("TileSetAtlasSource_si3w6")
 size = Vector2(9720, 221.818)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3h1u2"]
-size = Vector2(4690, 2305.45)
+size = Vector2(4690, 3876.36)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyef7"]
-size = Vector2(4690, 2305.46)
+size = Vector2(4690, 3880)
 
 [node name="level1" type="Node2D"]
 scale = Vector2(0.275, 0.275)
@@ -143,7 +144,7 @@ script = ExtResource("1_iwtr8")
 scale = Vector2(0.8, 0.8)
 tile_set = SubResource("TileSet_buuh8")
 format = 2
-layer_0/tile_data = PackedInt32Array(65535, 4, 0, 131071, 4, 0, 196607, 4, 0, 262143, 4, 0, 327679, 3, 65536, 393215, 6, 0, 327680, 0, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 0, 0, 327685, 0, 0, 327686, 2, 0, 327691, 2, 65536, 327692, 0, 65536, 327693, 0, 0, 327694, 1, 0, 327695, 1, 0, 196616, 2, 65536, 196617, 2, 0, 327696, 2, 0, 65554, 2, 65536, 65555, 1, 0, 65556, 1, 0, 65557, 1, 0, 65558, 1, 0, 65559, 1, 0, 65560, 1, 0, 65561, 5, 0, 131098, 5, 0, 131097, 6, 0, 196634, 6, 0, 196635, 1, 0, 196636, 0, 65536, 196637, 0, 65536)
+layer_0/tile_data = PackedInt32Array(65535, 4, 0, 131071, 4, 0, 196607, 4, 0, 262143, 4, 0, 327679, 3, 65536, 393215, 6, 0, 327680, 0, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 0, 0, 327685, 0, 0, 327686, 2, 0, 327691, 2, 65536, 327692, 0, 65536, 327693, 0, 0, 327694, 1, 0, 327695, 1, 0, 196616, 2, 65536, 196617, 2, 0, 327696, 2, 0, 65554, 2, 65536, 65555, 1, 0, 65556, 1, 0, 65557, 1, 0, 65558, 1, 0, 65559, 1, 0, 65560, 1, 0, 65561, 5, 0, 131098, 5, 0, 131097, 6, 0, 196634, 6, 0, 196635, 1, 0, 196636, 0, 65536, 196637, 0, 65536, -1, 4, 0, -65537, 4, 0, -131073, 4, 0, -196609, 4, 0, -262145, 4, 0, -327681, 4, 0)
 
 [node name="FallZone" type="Area2D" parent="."]
 position = Vector2(269.091, 1749.09)
@@ -190,7 +191,7 @@ script = ExtResource("11_xttq3")
 camera = NodePath("../../Player/Camera1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment1"]
-position = Vector2(2335, 505.455)
+position = Vector2(2335, -280.001)
 shape = SubResource("RectangleShape2D_3h1u2")
 debug_color = Color(0.0313726, 0.568627, 0.694118, 0.419608)
 
@@ -198,10 +199,28 @@ debug_color = Color(0.0313726, 0.568627, 0.694118, 0.419608)
 position = Vector2(7032.72, 505.455)
 script = ExtResource("11_xttq3")
 camera = NodePath("../../Player/Camera2")
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment2"]
+position = Vector2(0, -787.271)
 shape = SubResource("RectangleShape2D_jyef7")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0)
+offset_top = 644.0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="TextureButton" type="TextureButton" parent="HUD/Panel"]
+layout_mode = 0
+offset_left = -14.0
+offset_top = -17.0
+offset_right = 90.0
+offset_bottom = 87.0
+texture_normal = ExtResource("12_aqqgq")
+ignore_texture_size = true
+stretch_mode = 4
 
 [connection signal="body_entered" from="FallZone" to="Player" method="_on_fall_zone_body_entered"]
 [connection signal="body_entered" from="Segments/Segment1" to="Segments/Segment1" method="_on_body_entered"]

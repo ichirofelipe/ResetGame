@@ -5,18 +5,12 @@ class_name CharacterDash
 @export var animation: AnimatedSprite2D
 
 var canDash: bool
-var direction: int
 
 func Enter():
 	canDash = true
 	$DashLength.start()
+	player.dashTimer = player.dash_cooldown
 	
-	for key in player.dashProc:
-		if player.dashProc[key] > player.dashThreshold:
-			direction = 1 if key == "right" else -1
-			
-		player.dashProc[key] = 0
-
 func Physics_Update(_delta: float):
 	stateValidation()
 	dash()
@@ -37,7 +31,7 @@ func dash():
 	animation.play("dash")
 	
 	if canDash:
-		player.velocity.x = player.getLerp(player.dashSpeed * direction, 0.9)
+		player.velocity.x = player.getLerp(player.dashSpeed * player.direction, 0.9)
 	else:
 		player.velocity.x = player.getLerp(.0, 0.9)
 
