@@ -1,14 +1,22 @@
 extends CharacterBody2D
 
 @onready var anim = get_node("AnimationPlayer");
-	
+
+@export var platformCooldown = 3
+
 var willFall = false
 var isFalling = false;
-var motion = Vector2(0,0)
 var timer = Timer.new()
 var fallTimer = Timer.new()
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var FALL_SPEED = 50
+
+var currentPos;
+var defaultPos;
+
+func _ready():
+	defaultPos = self.global_position
+	currentPos = defaultPos;
 
 func _physics_process(delta):
 	_fall(delta)
@@ -20,11 +28,12 @@ func _on_area_2d_body_entered(body):
 		_fallCountDownStart()
 		print("enter");
 				
-func _on_destroy():
+func _on_reset_position():
 		willFall = false
 		isFalling = false
-		queue_free()
-		print("im free")
+		get_node("CollisionPolygon2D").disabled = false
+		self.global_position = defaultPos;
+		velocity.y = 0;
 		
 func _fall(delta):
 	if isFalling:
@@ -35,8 +44,8 @@ func _fall(delta):
 
 func _fallingCountDownStart():
 	if isFalling:
-		fallTimer.timeout.connect(self._on_destroy)
-		fallTimer.wait_time = 4
+		fallTimer.timeout.connect(self._on_reset_position)
+		fallTimer.wait_time = platformCooldown
 		fallTimer.one_shot = true
 		add_child(fallTimer)
 		fallTimer.start()

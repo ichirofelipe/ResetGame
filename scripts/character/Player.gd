@@ -45,4 +45,7 @@ func dash():
 
 
 func _on_fall_zone_body_entered(body):
-	get_tree().reload_current_scene()
+	#get_tree().reload_current_scene()
+	if Checkpoint.last_position:
+		self.global_position = Checkpoint.last_position
+	

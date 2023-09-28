@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://b4dk5np65g1j5"]
+[gd_scene load_steps=73 format=3 uid="uid://b4dk5np65g1j5"]
 
 [ext_resource type="Script" path="res://scripts/character/Player.gd" id="1_ii65a"]
 [ext_resource type="Script" path="res://scripts/State Machine.gd" id="1_stn8l"]
@@ -69,6 +69,7 @@
 [ext_resource type="Script" path="res://scripts/character/characterFloor.gd" id="67_tnked"]
 [ext_resource type="Script" path="res://scripts/character/characterAir.gd" id="68_f0p5o"]
 [ext_resource type="Script" path="res://scripts/character/characterDash.gd" id="69_u11rn"]
+[ext_resource type="PackedScene" uid="uid://4k5bxo3mas4l" path="res://scenes/main_timer.tscn" id="70_2ilx4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ehtws"]
 radius = 58.0
@@ -299,8 +300,7 @@ shape = SubResource("CapsuleShape2D_ehtws")
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4mur0")
-animation = &"dash"
-frame_progress = 0.268966
+animation = &"air"
 
 [node name="State Machine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_stn8l")
@@ -324,5 +324,12 @@ animation = NodePath("../../PlayerAnimation")
 [node name="DashLength" type="Timer" parent="State Machine/Dash"]
 wait_time = 0.25
 one_shot = true
+
+[node name="main_timer" parent="." instance=ExtResource("70_2ilx4")]
+offset_left = -200.0
+offset_top = -200.0
+offset_right = -200.0
+offset_bottom = -200.0
+scale = Vector2(3, 3)
 
 [connection signal="timeout" from="State Machine/Dash/DashLength" to="State Machine/Dash" method="_on_dash_length_timeout"]
