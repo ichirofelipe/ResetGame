@@ -6,12 +6,12 @@ signal UseSkill
 @export var run_speed: int = 400.0
 @export var jump_force: int = -1000
 @export var skills: Dictionary = {"dash": 5}
+@export var dashSpeed: float = 2000.0
 
 const GRAVITY = 65
 
 
 var direction: int = 1
-var dashSpeed: float = 2000.0
 var dashTimer: float = 0;
 var doubleJump: bool = true
 var doubleJumped: bool = false
