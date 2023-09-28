@@ -26,7 +26,6 @@ func _on_area_2d_body_entered(body):
 		anim.play("shake")
 		willFall = true
 		_fallCountDownStart()
-		print("enter");
 				
 func _on_reset_position():
 		willFall = false
@@ -37,7 +36,6 @@ func _on_reset_position():
 		
 func _fall(delta):
 	if isFalling:
-		print("fall")
 		anim.stop();
 		velocity.y += (gravity * FALL_SPEED) * delta
 		move_and_slide()

@@ -1,33 +1,30 @@
 extends Control
 
-var seconds = 0
+@export var time = 60
+@export var timePenalty = 3;
 var minute = 0
-var defaultSecs = 0
-var defaultMins = 1
+var seconds = 0
+var miliseconds = 0
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	_resetTimer()
-
-
-
-
-func _initTimer(): 
-	$Label.text = str(minute) + ":" + str(seconds)
+func _setTimer(delta): 
+	#$Label.text = str(minute) + ":" + str(seconds) + ":" + str("%.2f" % $Timer.time_left)
+	miliseconds = fmod(time, 1) * 1000
+	seconds = fmod(time, 60)
+	minute = fmod(time, 60*60) / 60
 	
-func _on_timer_timeout():
-	if seconds == 0:
-		if minute > 0:
-			minute -= 1
-			seconds = 60
-	seconds -= 1
-	_initTimer();
+	var timeleft =  "%02d : %02d : %02d" % [minute, seconds, miliseconds]
+	$Label.text = timeleft
 	
-		
-func _resetTimer():
-	seconds = defaultSecs
-	minute = defaultMins
-	_initTimer()
+	time -= delta
+func _physics_process(delta):
+	_setTimer(delta)
+	_gameOver()
 	
-
+func _decreaseTimer(): 
+	time -= timePenalty;
+	
+	
+func _gameOver():
+	if(time <= 0):
+		get_tree().change_scene_to_file("res://scenes/levels/tutorial/tutorial.tscn")

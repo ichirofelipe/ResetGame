@@ -7,6 +7,7 @@ signal UseSkill
 @export var jump_force: int = -1000
 @export var skills: Dictionary = {"dash": 5}
 @export var dashSpeed: float = 2000.0
+@export var mainTimer: Control
 
 
 
@@ -46,6 +47,7 @@ func dash():
 
 func _on_fall_zone_body_entered(body):
 	#get_tree().reload_current_scene()
+	mainTimer._decreaseTimer();
 	if Checkpoint.last_position:
 		self.global_position = Checkpoint.last_position
 	
