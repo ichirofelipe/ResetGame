@@ -7,7 +7,6 @@ class_name CharacterAir
 var velX: float
 var Mspeed: float
 var Rspeed: float
-
 	
 func Physics_Update(_delta: float):
 	stateValidation(_delta)

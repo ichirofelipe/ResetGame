@@ -8,9 +8,9 @@ signal UseSkill
 @export var skills: Dictionary = {"dash": 5}
 @export var dashSpeed: float = 2000.0
 
-const GRAVITY = 65
 
 
+var gravity = 65
 var direction: int = 1
 var dashTimer: float = 0;
 var doubleJump: bool = true
@@ -27,7 +27,7 @@ func _physics_process(delta):
 
 
 func fall():
-	velocity.y += GRAVITY
+	velocity.y += gravity
 	move_and_slide()
 	velocity.x = lerp(velocity.x, .0, 0.2)
 

@@ -5,6 +5,7 @@ class_name CharacterDash
 @export var animation: AnimatedSprite2D
 
 var canDash: bool
+var tmpGravity: float
 
 func Enter():
 	canDash = true
@@ -12,6 +13,10 @@ func Enter():
 	player.dashTimer = player.skills.dash
 	player.dash()
 	player.dashSpeed = 0;
+	tmpGravity = player.gravity
+	
+	if !player.is_on_floor():
+		player.gravity = 0
 	
 func Physics_Update(_delta: float):
 	stateValidation()
@@ -37,6 +42,7 @@ func dash(delta):
 		player.velocity.x = player.getLerp(player.dashSpeed * player.direction, 0.5)
 	else:
 		player.velocity.x = player.getLerp(.0, 0.9)
+		player.gravity = tmpGravity
 
 
 func _on_dash_length_timeout():
