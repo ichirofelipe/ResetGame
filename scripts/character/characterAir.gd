@@ -37,6 +37,9 @@ func playerMotion():
 	elif Input.is_action_pressed("left"):
 		player.velocity.x = player.getLerp(-Mspeed, 0.9) if velX > -Mspeed else player.getLerp(-Rspeed, 0.7)
 		isInAir(-1)
+		
+	if Input.is_action_just_pressed("dash") and player.dashTimer == 0:
+		Transitioned.emit(self, "dash")
 	
 	if Input.is_action_just_pressed("jump") and player.doubleJump and !player.doubleJumped:
 		player.jump()
@@ -44,10 +47,5 @@ func playerMotion():
 
 
 func isInAir(direction: int):
+	player.direction = direction
 	animation.flip_h = true if direction == -1 else false
-	isDashing(direction)
-	
-	
-func isDashing(direction: int):
-	if Input.is_action_just_pressed("dash") and player.dashTimer == 0:
-		Transitioned.emit(self, "dash")

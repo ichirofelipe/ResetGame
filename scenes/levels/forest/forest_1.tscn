@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c2bekxcgd0muq"]
+[gd_scene load_steps=27 format=3 uid="uid://c2bekxcgd0muq"]
 
 [ext_resource type="Script" path="res://scripts/levels/forest/forest_1.gd" id="1_iwtr8"]
 [ext_resource type="Texture2D" uid="uid://cy3c8qo7tepfd" path="res://assets/sprites/tileset/forest/cube_01.png" id="1_qkvd8"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://fbelmyiq1ifk" path="res://scenes/blocks/checkpoint.tscn" id="10_q4liv"]
 [ext_resource type="Script" path="res://scripts/blocks/segment.gd" id="11_xttq3"]
 [ext_resource type="Texture2D" uid="uid://d07svryib438h" path="res://assets/sprites/character/Dash2/DashBlue_00009.png" id="12_aqqgq"]
+[ext_resource type="Script" path="res://scripts/hud/skill.gd" id="13_40ua3"]
+[ext_resource type="FontFile" uid="uid://dn033v0u6xtnd" path="res://assets/fonts/Xolonium-Regular.ttf" id="14_ce5e6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ffyw5"]
 texture = ExtResource("1_qkvd8")
@@ -136,6 +138,11 @@ size = Vector2(4690, 3876.36)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyef7"]
 size = Vector2(4690, 3880)
 
+[sub_resource type="LabelSettings" id="LabelSettings_nbfo8"]
+font = ExtResource("14_ce5e6")
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [node name="level1" type="Node2D"]
 scale = Vector2(0.275, 0.275)
 script = ExtResource("1_iwtr8")
@@ -207,7 +214,6 @@ shape = SubResource("RectangleShape2D_jyef7")
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="HUD"]
-self_modulate = Color(1, 1, 1, 0)
 offset_top = 644.0
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -221,6 +227,26 @@ offset_bottom = 87.0
 texture_normal = ExtResource("12_aqqgq")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("13_40ua3")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD/Panel/TextureButton"]
+modulate = Color(0.823529, 0.109804, 0.109804, 0.109804)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 17.0
+offset_right = 88.0
+offset_bottom = 93.0
+fill_mode = 5
+
+[node name="Label" type="Label" parent="HUD/Panel/TextureButton"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 69.0
+offset_right = 82.0
+offset_bottom = 92.0
+text = "0.0"
+label_settings = SubResource("LabelSettings_nbfo8")
+horizontal_alignment = 2
 
 [connection signal="body_entered" from="FallZone" to="Player" method="_on_fall_zone_body_entered"]
 [connection signal="body_entered" from="Segments/Segment1" to="Segments/Segment1" method="_on_body_entered"]

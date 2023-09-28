@@ -36,6 +36,9 @@ func playerMotion():
 	else:
 		animation.play("idle")
 		
+	if Input.is_action_just_pressed("dash") and player.dashTimer == 0:
+		Transitioned.emit(self, "dash")
+		
 	if Input.is_action_just_pressed("jump"):
 		player.jump()
 	
@@ -45,7 +48,6 @@ func isMoving(direction: int):
 	animation.play("walk")
 	animation.flip_h = true if direction == -1 else false
 	isRunning(direction)
-	isDashing(direction)
 	
 	
 func isRunning(direction: int):
@@ -55,7 +57,3 @@ func isRunning(direction: int):
 	else:
 		player.velocity.x = player.getLerp(Mspeed * direction, 0.9)
 		animation.speed_scale = 1
-		
-func isDashing(direction: int):
-	if Input.is_action_just_pressed("dash") and player.dashTimer == 0:
-		Transitioned.emit(self, "dash")

@@ -322,7 +322,7 @@ player = NodePath("../..")
 animation = NodePath("../../PlayerAnimation")
 
 [node name="DashLength" type="Timer" parent="State Machine/Dash"]
-wait_time = 0.15
+wait_time = 0.25
 one_shot = true
 
 [connection signal="timeout" from="State Machine/Dash/DashLength" to="State Machine/Dash" method="_on_dash_length_timeout"]

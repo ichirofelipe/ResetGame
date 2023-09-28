@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var move_speed: int = 250.0
+@export var move_speed: int = 400.0
 @export var run_speed: int = 400.0
 @export var jump_force: int = -1000
 @export var dash_cooldown: int = 5
@@ -8,7 +8,7 @@ extends CharacterBody2D
 const GRAVITY = 65
 
 var direction: int = 1
-var dashSpeed: float = 1500.0
+var dashSpeed: float = 2000.0
 var dashTimer: float = 0;
 var doubleJump: bool = true
 var doubleJumped: bool = false
