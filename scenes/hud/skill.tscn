@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://ml522118npfn"]
+
+[ext_resource type="Texture2D" uid="uid://cir1a8a4y5vf2" path="res://assets/images/skill/dash.png" id="1_s3qgp"]
+[ext_resource type="Script" path="res://scripts/hud/skill.gd" id="2_8bk0v"]
+[ext_resource type="FontFile" uid="uid://dn033v0u6xtnd" path="res://assets/fonts/Xolonium-Regular.ttf" id="3_k0eed"]
+[ext_resource type="Texture2D" uid="uid://ul8d7k1b5lls" path="res://assets/images/skill/overlay.png" id="3_y2qo2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gf8b3"]
+font = ExtResource("3_k0eed")
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Dash" type="TextureButton"]
+offset_top = -1.0
+offset_right = 104.0
+offset_bottom = 103.0
+texture_normal = ExtResource("1_s3qgp")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("2_8bk0v")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+modulate = Color(0.521569, 0.521569, 0.521569, 0.556863)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 70.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = ExtResource("3_y2qo2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0.0"
+label_settings = SubResource("LabelSettings_gf8b3")
+horizontal_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,228 @@
+[gd_scene load_steps=24 format=3 uid="uid://c2bekxcgd0muq"]
+
+[ext_resource type="Script" path="res://scripts/levels/forest/forest_1.gd" id="1_iwtr8"]
+[ext_resource type="Texture2D" uid="uid://cy3c8qo7tepfd" path="res://assets/sprites/tileset/forest/cube_01.png" id="1_qkvd8"]
+[ext_resource type="Texture2D" uid="uid://dc0ryxgry51fw" path="res://assets/sprites/tileset/forest/cube_02.png" id="2_b22n8"]
+[ext_resource type="Texture2D" uid="uid://oh2a14cvkx41" path="res://assets/sprites/tileset/forest/cube_corner.png" id="3_fmu4r"]
+[ext_resource type="Texture2D" uid="uid://bfmgi03g5iydq" path="res://assets/sprites/tileset/forest/cube_side_01.png" id="4_5w8yk"]
+[ext_resource type="Texture2D" uid="uid://chine1euq2fe" path="res://assets/sprites/tileset/forest/cube_side_02.png" id="5_cin50"]
+[ext_resource type="Texture2D" uid="uid://bpesysoaj1m5" path="res://assets/sprites/tileset/forest/cube_slant.png" id="6_c4c48"]
+[ext_resource type="Texture2D" uid="uid://c34ok7dq4vwnn" path="res://assets/sprites/tileset/forest/cube_slant_corner.png" id="7_erug7"]
+[ext_resource type="PackedScene" uid="uid://b4dk5np65g1j5" path="res://scenes/Player.tscn" id="8_4bf17"]
+[ext_resource type="PackedScene" uid="uid://fbelmyiq1ifk" path="res://scenes/blocks/checkpoint.tscn" id="10_q4liv"]
+[ext_resource type="Script" path="res://scripts/blocks/segment.gd" id="11_xttq3"]
+[ext_resource type="PackedScene" uid="uid://ml522118npfn" path="res://scenes/hud/skill.tscn" id="12_5eqa4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ffyw5"]
+texture = ExtResource("1_qkvd8")
+texture_region_size = Vector2i(255, 307)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 26)
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-127.5, -127.5, 127.5, -127.5, 127.5, 127.5, -127.5, 127.5)
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/1/texture_origin = Vector2i(0, 26)
+0:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/1/physics_layer_0/angular_velocity = 0.0
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-127.5, -127.5, 127.5, -127.5, 127.5, 127.5, -127.5, 127.5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nle7p"]
+texture = ExtResource("2_b22n8")
+texture_region_size = Vector2i(255, 305)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 26)
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-127.5, -127.5, 127.5, -127.5, 127.5, 127.5, -127.5, 127.5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k0vwd"]
+texture = ExtResource("3_fmu4r")
+texture_region_size = Vector2i(255, 269)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 8)
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-127.5, -127.5, -7.25, -127.5, 27.75, -104.5, 59.25, -99, 79.75, -83, 92.75, -53, 114.75, -31.5, 127.5, 18.5, 127.5, 63.5, 117.25, 62.5, 109.75, 73, 110.25, 127.5, -127.5, 127.5)
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/1/texture_origin = Vector2i(0, 8)
+0:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/1/physics_layer_0/angular_velocity = 0.0
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(127.5, -127.5, 8, -127.5, -7, -121.5, -19, -109, -26.5, -104, -59, -97, -77.5, -86, -83.5, -76, -90.5, -58, -96, -50.5, -103, -42.5, -113.5, -32, -120.5, -14.5, -127.5, 8.5, -127.5, 46.5, -127.5, 56, -121, 64.5, -115, 62.5, -109.5, 71, -109.5, 98.5, -108, 127.5, 127.5, 127.5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aywmd"]
+texture = ExtResource("4_5w8yk")
+texture_region_size = Vector2i(255, 255)
+0:0/next_alternative_id = 4
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-127.5, -127.5, 127.5, -127.5, 127.5, 127.5, -127.5, 127.5)
+0:0/1 = 1
+0:0/1/flip_v = true
+0:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/1/physics_layer_0/angular_velocity = 0.0
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-127.5, -127.5, 127.5, -127.5, 127.5, 127.5, -127.5, 127.5)
+0:0/2 = 2
+0:0/2/flip_h = true
+0:0/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/2/physics_layer_0/angular_velocity = 0.0
+0:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-127.5, -127.5, 127.5, -127.5, 127.5, 127.5, -127.5, 127.5)
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/3/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/3/physics_layer_0/angular_velocity = 0.0
+0:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-127.5, -127.5, 127.5, -127.5, 127.5, 127.5, -127.5, 127.5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jdpf5"]
+texture = ExtResource("5_cin50")
+texture_region_size = Vector2i(255, 255)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-127.5, -127.5, 127.5, -127.5, 127.5, 127.5, -127.5, 127.5)
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/1/physics_layer_0/angular_velocity = 0.0
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-127.5, -127.5, 127.5, -127.5, 127.5, 127.5, -127.5, 127.5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6js46"]
+texture = ExtResource("6_c4c48")
+texture_region_size = Vector2i(255, 256)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-127.5, -127.5, -105.25, -120.5, -87.25, -110.5, -72.25, -86, -40.75, -44.5, 0.75, -23.5, 32.75, -1, 57.75, 23, 75.25, 50, 94.75, 87.5, 113.25, 106, 127.5, 127.5, -127.5, 127.5)
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/1/physics_layer_0/angular_velocity = 0.0
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(127.5, -127.5, 98.5, -117, 85, -105.5, 77.5, -93, 40.5, -44.5, 6, -28, -24, -9, -47.5, 13.5, -62, 29.5, -83.5, 63.5, -95, 91, -110, 101, -127.5, 127.5, 127.5, 127.5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_si3w6"]
+texture = ExtResource("7_erug7")
+texture_region_size = Vector2i(255, 255)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-127.5, -127.5, 127.5, -127.5, 127.5, 127.5, -127.5, 127.5)
+
+[sub_resource type="TileSet" id="TileSet_buuh8"]
+tile_size = Vector2i(255, 255)
+physics_layer_0/collision_layer = 2
+sources/0 = SubResource("TileSetAtlasSource_ffyw5")
+sources/1 = SubResource("TileSetAtlasSource_nle7p")
+sources/2 = SubResource("TileSetAtlasSource_k0vwd")
+sources/3 = SubResource("TileSetAtlasSource_aywmd")
+sources/4 = SubResource("TileSetAtlasSource_jdpf5")
+sources/5 = SubResource("TileSetAtlasSource_6js46")
+sources/6 = SubResource("TileSetAtlasSource_si3w6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3rck"]
+size = Vector2(9720, 221.818)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3h1u2"]
+size = Vector2(4690, 3876.36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyef7"]
+size = Vector2(4690, 3880)
+
+[node name="level1" type="Node2D"]
+scale = Vector2(0.275, 0.275)
+script = ExtResource("1_iwtr8")
+
+[node name="PlatformTiles" type="TileMap" parent="."]
+scale = Vector2(0.8, 0.8)
+tile_set = SubResource("TileSet_buuh8")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 4, 0, 131071, 4, 0, 196607, 4, 0, 262143, 4, 0, 327679, 3, 65536, 393215, 6, 0, 327680, 0, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 0, 0, 327685, 0, 0, 327686, 2, 0, 327691, 2, 65536, 327692, 0, 65536, 327693, 0, 0, 327694, 1, 0, 327695, 1, 0, 196616, 2, 65536, 196617, 2, 0, 327696, 2, 0, 65554, 2, 65536, 65555, 1, 0, 65556, 1, 0, 65557, 1, 0, 65558, 1, 0, 65559, 1, 0, 65560, 1, 0, 65561, 5, 0, 131098, 5, 0, 131097, 6, 0, 196634, 6, 0, 196635, 1, 0, 196636, 0, 65536, 196637, 0, 65536, -1, 4, 0, -65537, 4, 0, -131073, 4, 0, -196609, 4, 0, -262145, 4, 0, -327681, 4, 0)
+
+[node name="FallZone" type="Area2D" parent="."]
+position = Vector2(269.091, 1749.09)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallZone"]
+position = Vector2(4383.64, 34.5455)
+shape = SubResource("RectangleShape2D_e3rck")
+
+[node name="Player" parent="." instance=ExtResource("8_4bf17")]
+position = Vector2(174.545, 658.182)
+
+[node name="Camera1" type="Camera2D" parent="Player"]
+enabled = false
+limit_left = 0
+limit_right = 1288
+limit_bottom = 1200
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_limits = true
+
+[node name="Camera2" type="Camera2D" parent="Player"]
+enabled = false
+limit_left = 1288
+limit_bottom = 1200
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_limits = true
+
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="Checkpoint1" parent="Checkpoints" instance=ExtResource("10_q4liv")]
+position = Vector2(185.455, 687.273)
+
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("10_q4liv")]
+position = Vector2(4810.91, 50.9091)
+
+[node name="Segments" type="Node2D" parent="."]
+
+[node name="Segment1" type="Area2D" parent="Segments" node_paths=PackedStringArray("camera")]
+script = ExtResource("11_xttq3")
+camera = NodePath("../../Player/Camera1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment1"]
+position = Vector2(2335, -280.001)
+shape = SubResource("RectangleShape2D_3h1u2")
+debug_color = Color(0.0313726, 0.568627, 0.694118, 0.419608)
+
+[node name="Segment2" type="Area2D" parent="Segments" node_paths=PackedStringArray("camera")]
+position = Vector2(7032.72, 505.455)
+script = ExtResource("11_xttq3")
+camera = NodePath("../../Player/Camera2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment2"]
+position = Vector2(0, -787.271)
+shape = SubResource("RectangleShape2D_jyef7")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="HUD"]
+offset_top = 644.0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Dash" parent="HUD/Panel" node_paths=PackedStringArray("player") instance=ExtResource("12_5eqa4")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 70.0
+offset_bottom = 70.0
+player = NodePath("../../../Player")
+skillName = "dash"
+
+[connection signal="body_entered" from="FallZone" to="Player" method="_on_fall_zone_body_entered"]
+[connection signal="UseSkill" from="Player" to="HUD/Panel/Dash" method="_on_player_use_skill"]
+[connection signal="body_entered" from="Segments/Segment1" to="Segments/Segment1" method="_on_body_entered"]
+[connection signal="body_exited" from="Segments/Segment1" to="Segments/Segment1" method="_on_body_exited"]
+[connection signal="body_entered" from="Segments/Segment2" to="Segments/Segment2" method="_on_body_entered"]
+[connection signal="body_exited" from="Segments/Segment2" to="Segments/Segment2" method="_on_body_exited"]

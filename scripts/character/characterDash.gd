@@ -9,7 +9,8 @@ var canDash: bool
 func Enter():
 	canDash = true
 	$DashLength.start()
-	player.dashTimer = player.dash_cooldown
+	player.dashTimer = player.skills.dash
+	player.dash()
 	
 func Physics_Update(_delta: float):
 	stateValidation()
