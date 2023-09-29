@@ -7,6 +7,10 @@ class_name CharacterAir
 var velX: float
 var Mspeed: float
 var Rspeed: float
+
+func Enter():
+	$AirTimer.start()
+
 	
 func Physics_Update(_delta: float):
 	stateValidation(_delta)
@@ -17,6 +21,7 @@ func Physics_Update(_delta: float):
 
 func stateValidation(_delta: float):
 	if player.is_on_floor():
+		$AirTimer.stop()
 		Transitioned.emit(self, "floor")
 		return
 
@@ -28,7 +33,8 @@ func updateVariables():
 
 
 func playerMotion():
-	animation.play("air")
+	if !player.isDamaged:
+		animation.play("air")
 	
 	if Input.is_action_pressed("right"):
 		player.velocity.x = player.getLerp(Mspeed, 0.9) if velX < Mspeed else player.getLerp(Rspeed, 0.7)
@@ -40,11 +46,26 @@ func playerMotion():
 	if Input.is_action_just_pressed("dash") and player.dashTimer == 0:
 		Transitioned.emit(self, "dash")
 	
-	if Input.is_action_just_pressed("jump") and player.doubleJump and !player.doubleJumped:
-		player.jump()
-		player.doubleJumped = true
+	if Input.is_action_just_pressed("jump"):
+		jumpValidation()		
 
 
 func isInAir(direction: int):
 	player.direction = direction
 	animation.flip_h = true if direction == -1 else false
+	
+	
+func jumpValidation():
+	if !player.firstJump:
+		$AirTimer.stop()
+		player.jump()
+		player.firstJump = true
+		
+	elif  player.doubleJump and !player.doubleJumped:
+		player.jump()
+		player.doubleJumped = true
+	
+
+
+func _on_air_timer_timeout():
+	player.firstJump = true

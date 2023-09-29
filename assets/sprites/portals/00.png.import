@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx6htkb562y2b"
-path="res://.godot/imported/BlueWizardDash_00009.png-f764806c347b518302cc2b4cee3c4676.ctex"
+uid="uid://dcmrtmfjc7iaf"
+path="res://.godot/imported/00.png-4a4dcf07b2ee288e2838e6e9b8bc7967.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/character/DashEffect/BlueWizardDash_00009.png"
-dest_files=["res://.godot/imported/BlueWizardDash_00009.png-f764806c347b518302cc2b4cee3c4676.ctex"]
+source_file="res://assets/sprites/portals/00.png"
+dest_files=["res://.godot/imported/00.png-4a4dcf07b2ee288e2838e6e9b8bc7967.ctex"]
 
 [params]
 

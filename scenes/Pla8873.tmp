@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://b4dk5np65g1j5"]
+[gd_scene load_steps=73 format=3 uid="uid://b4dk5np65g1j5"]
 
 [ext_resource type="Script" path="res://scripts/character/Player.gd" id="1_ii65a"]
 [ext_resource type="Script" path="res://scripts/State Machine.gd" id="1_stn8l"]
@@ -27,7 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://bdjf3pax5tyaa" path="res://assets/sprites/character/Idle/Chara - BlueIdle00006.png" id="24_git5j"]
 [ext_resource type="Texture2D" uid="uid://cet2nn80j662m" path="res://assets/sprites/character/Idle/Chara - BlueIdle00007.png" id="25_rqknv"]
 [ext_resource type="Texture2D" uid="uid://bmdvh3ykn253" path="res://assets/sprites/character/Idle/Chara - BlueIdle00008.png" id="26_8de1c"]
-[ext_resource type="Texture2D" uid="uid://dslu34e0irgay" path="res://assets/sprites/portals/01.png" id="26_650do"]
 [ext_resource type="Texture2D" uid="uid://dkbfscy4ymtmq" path="res://assets/sprites/character/Idle/Chara - BlueIdle00009.png" id="27_ocuhj"]
 [ext_resource type="Texture2D" uid="uid://56wfun707sj3" path="res://assets/sprites/character/Idle/Chara - BlueIdle00010.png" id="28_w7akt"]
 [ext_resource type="Texture2D" uid="uid://vicqfgal84ce" path="res://assets/sprites/character/Idle/Chara - BlueIdle00011.png" id="29_okvjc"]
@@ -75,50 +74,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ehtws"]
 radius = 58.0
 height = 280.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qimku"]
-atlas = ExtResource("26_650do")
-region = Rect2(0, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_clc4n"]
-atlas = ExtResource("26_650do")
-region = Rect2(64, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f613r"]
-atlas = ExtResource("26_650do")
-region = Rect2(128, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i2fdt"]
-atlas = ExtResource("26_650do")
-region = Rect2(192, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wgeeo"]
-atlas = ExtResource("26_650do")
-region = Rect2(256, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_re6je"]
-atlas = ExtResource("26_650do")
-region = Rect2(320, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ivtvi"]
-atlas = ExtResource("26_650do")
-region = Rect2(384, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5j2g6"]
-atlas = ExtResource("26_650do")
-region = Rect2(448, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y0a1v"]
-atlas = ExtResource("26_650do")
-region = Rect2(512, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hkj27"]
-atlas = ExtResource("26_650do")
-region = Rect2(576, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0tdrb"]
-atlas = ExtResource("26_650do")
-region = Rect2(640, 256, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4mur0"]
 animations = [{
@@ -203,44 +158,6 @@ animations = [{
 "loop": true,
 "name": &"dash",
 "speed": 30.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qimku")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_clc4n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f613r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i2fdt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wgeeo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_re6je")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ivtvi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5j2g6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y0a1v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hkj27")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0tdrb")
-}],
-"loop": true,
-"name": &"dead",
-"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -385,10 +302,12 @@ mainTimer = NodePath("main_timer")
 position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_ehtws")
 
-[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
+[node name="Animations" type="Node2D" parent="."]
+
+[node name="Player" type="AnimatedSprite2D" parent="Animations"]
 sprite_frames = SubResource("SpriteFrames_4mur0")
-animation = &"dead"
-frame_progress = 0.337497
+animation = &"dash"
+frame_progress = 0.607912
 
 [node name="State Machine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_stn8l")
@@ -397,12 +316,12 @@ initial_state = NodePath("Air")
 [node name="Floor" type="Node" parent="State Machine" node_paths=PackedStringArray("player", "animation")]
 script = ExtResource("67_tnked")
 player = NodePath("../..")
-animation = NodePath("../../PlayerAnimation")
+animation = NodePath("../../Animations/Player")
 
 [node name="Air" type="Node" parent="State Machine" node_paths=PackedStringArray("player", "animation")]
 script = ExtResource("68_f0p5o")
 player = NodePath("../..")
-animation = NodePath("../../PlayerAnimation")
+animation = NodePath("../../Animations/Player")
 
 [node name="AirTimer" type="Timer" parent="State Machine/Air"]
 wait_time = 0.125
@@ -411,7 +330,7 @@ one_shot = true
 [node name="Dash" type="Node" parent="State Machine" node_paths=PackedStringArray("player", "animation")]
 script = ExtResource("69_u11rn")
 player = NodePath("../..")
-animation = NodePath("../../PlayerAnimation")
+animation = NodePath("../../Animations/Player")
 
 [node name="DashLength" type="Timer" parent="State Machine/Dash"]
 wait_time = 0.25
@@ -424,10 +343,5 @@ offset_right = -200.0
 offset_bottom = -200.0
 scale = Vector2(3, 3)
 
-[node name="DeathTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [connection signal="timeout" from="State Machine/Air/AirTimer" to="State Machine/Air" method="_on_air_timer_timeout"]
 [connection signal="timeout" from="State Machine/Dash/DashLength" to="State Machine/Dash" method="_on_dash_length_timeout"]
-[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1uqkfj8sy5ov"]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_7awal"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k5ngo"]
+font_size = 64
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_7awal")
+
+[node name="RestartRun" type="Button" parent="."]
+visible = false
+offset_left = 541.0
+offset_top = 395.0
+offset_right = 770.0
+offset_bottom = 474.0
+text = "Restart Run"
+
+[node name="Return" type="Button" parent="."]
+offset_left = 544.0
+offset_top = 416.0
+offset_right = 773.0
+offset_bottom = 495.0
+text = "Return
+"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 544.0
+offset_top = 168.0
+offset_right = 754.0
+offset_bottom = 259.0
+text = "GGWP!"
+label_settings = SubResource("LabelSettings_k5ngo")
+
+[connection signal="pressed" from="RestartRun" to="." method="_on_restart_run_pressed"]
+[connection signal="pressed" from="Return" to="." method="_on_return_pressed"]

@@ -8,8 +8,8 @@ var canDash: bool
 var tmpGravity: float
 
 func Enter():
-	canDash = true
 	$DashLength.start()
+	canDash = true
 	player.dashTimer = player.skills.dash
 	player.dash()
 	player.dashSpeed = 0;
@@ -17,6 +17,7 @@ func Enter():
 	
 	if !player.is_on_floor():
 		player.gravity = 0
+	
 	
 func Physics_Update(_delta: float):
 	stateValidation()
@@ -27,7 +28,7 @@ func Physics_Update(_delta: float):
 func stateValidation():
 	if canDash:
 		return
-	
+		
 	if player.is_on_floor():
 		Transitioned.emit(self, "floor")
 	elif !player.is_on_floor():
@@ -43,6 +44,7 @@ func dash(delta):
 	else:
 		player.velocity.x = player.getLerp(.0, 0.9)
 		player.gravity = tmpGravity
+
 
 
 func _on_dash_length_timeout():

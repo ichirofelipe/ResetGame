@@ -28,3 +28,11 @@ func _decreaseTimer():
 func _gameOver():
 	if(time <= 0):
 		get_tree().change_scene_to_file("res://scenes/levels/tutorial/tutorial.tscn")
+
+
+func _stop():
+	set_process(false)
+	
+
+func _start():
+	set_process(true)

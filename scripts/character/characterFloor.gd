@@ -8,6 +8,7 @@ var Mspeed: float
 var Rspeed: float
 
 func Enter():
+	player.firstJump = false
 	if player.doubleJump:
 		player.doubleJumped = false
 
@@ -40,6 +41,7 @@ func playerMotion():
 		Transitioned.emit(self, "dash")
 		
 	if Input.is_action_just_pressed("jump"):
+		player.firstJump = true
 		player.jump()
 	
 
