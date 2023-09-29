@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnaoem03b3lmr"]
+[gd_scene load_steps=12 format=3 uid="uid://dnaoem03b3lmr"]
 
 [ext_resource type="Script" path="res://scripts/blocks/portal.gd" id="1_3yigy"]
 [ext_resource type="Texture2D" uid="uid://dslu34e0irgay" path="res://assets/sprites/portals/01.png" id="1_nfjy7"]
@@ -34,22 +34,6 @@ region = Rect2(320, 384, 64, 64)
 atlas = ExtResource("1_nfjy7")
 region = Rect2(384, 384, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fj4c3"]
-atlas = ExtResource("1_nfjy7")
-region = Rect2(448, 384, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hopyq"]
-atlas = ExtResource("1_nfjy7")
-region = Rect2(512, 384, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sbai0"]
-atlas = ExtResource("1_nfjy7")
-region = Rect2(576, 384, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rkd0k"]
-atlas = ExtResource("1_nfjy7")
-region = Rect2(640, 384, 64, 64)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_3hnv3"]
 animations = [{
 "frames": [{
@@ -73,18 +57,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gtnnf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fj4c3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hopyq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sbai0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rkd0k")
 }],
 "loop": true,
 "name": &"idle",
@@ -102,6 +74,6 @@ scale = Vector2(7.25, 7.5)
 sprite_frames = SubResource("SpriteFrames_3hnv3")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.555584
+frame_progress = 0.615631
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
